@@ -5,7 +5,7 @@ import axios from 'axios';
 import Cookies from 'universal-cookie';
 
 import './style.css';
-import logo from './logo-bmstu.png';
+import logo from './logo-bmstu.png'
 
 const URL = "https://bmstuvoting.herokuapp.com/"
 
