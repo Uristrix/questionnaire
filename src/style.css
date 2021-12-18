@@ -1,5 +1,5 @@
-html, body
-{
+@import url('https://fonts.googleapis.com/css2?family=Alex+Brush&family=Montserrat:wght@900&display=swap');
+body{
     height: 100%;
     width: 100%;
 }
@@ -8,12 +8,18 @@ body
     background: linear-gradient(45deg, orange, rebeccapurple) no-repeat;
     background-attachment: fixed;
     color: white;
-    font-family: "Arial Black";
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+}
+
+h3{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
 }
 ul
 {
@@ -60,7 +66,7 @@ nav
     height: 100%;
     background: linear-gradient(0deg, #0064a7,#01feff );
     background-size: 300% 100%;
-    animation: progress-animation 5s linear;
+    animation: progress-animation 1.5s linear;
     word-wrap: normal;
 }
 .content
