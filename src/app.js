@@ -163,17 +163,19 @@ class App extends React.Component{
                     this.setState({condition: Boolean(param[0]), selected: param[1]})
                 }
                 else this.setState({selected: false, condition: false})
+
             }
         )
     }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     render() {
         if(this.state.endTime !== undefined)
-            if(this.state.date.getHours() === this.state.endTime.split(':')[0] &&
-                this.state.date.getMinutes() === this.state.endTime.split(':')[1])
+            if(String(this.state.date.getHours()) === this.state.endTime.split(':')[0] &&
+                String(this.state.date.getMinutes()) === this.state.endTime.split(':')[1])
             {
                 this.del()
                 this.checkCookie();
+
             }
 
         if(this.state.music !== undefined)
