@@ -16,7 +16,7 @@ class Navbar extends React.Component {
             M.Sidenav.init(elems);
         });
         return (
-            <div>
+            <div className="navbar-fixed">
                 <nav className="nav-wrapper">
                     <a className= 'brand-logo brush' href="https://mf.bmstu.ru/">
                         <img className="image" src={logo} alt=' Опросник МФ МГТУ'/>
@@ -173,7 +173,6 @@ class App extends React.Component{
             if(String(this.state.date.getHours()) === this.state.endTime.split(':')[0] &&
                 String(this.state.date.getMinutes()) === this.state.endTime.split(':')[1])
             {
-                this.del()
                 this.checkCookie();
 
             }

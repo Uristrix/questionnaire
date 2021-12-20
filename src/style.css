@@ -156,10 +156,8 @@ span {display: block;}
 
 .loading
 {
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 50%;
-    text-align: center;
+    position:absolute;
+    width:100%;
+    top:50%;
+    text-align:center;
 }
