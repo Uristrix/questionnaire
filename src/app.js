@@ -7,7 +7,7 @@ import Cookies from 'universal-cookie';
 import './style.css';
 import logo from './logo-bmstu.png'
 
-const URL = "https://bmstuvoting.herokuapp.com/"
+const URL = "https://bmstuvoting.herokuapp.com/" //api
 
 class Navbar extends React.Component {
     render() {
@@ -50,21 +50,21 @@ class Post extends React.Component{
     {
         event.preventDefault();
         axios.put(URL+"api_form/update/" +this.props.endTime, {'selected': this.props.selected})
-            .then(res => {this.props.updateMusic(res.data); this.props.updateCondition();})
+            .then(res => {
+                this.props.updateMusic(res.data);
+                this.props.updateCondition();
 
+                const dt = this.props.date;
 
-        const dt = this.props.date;
-        // let lifetime = new Date(dt.getFullYear(), dt.getMonth(), dt.getDate(),
-        //     dt.getHours(), dt.getMinutes(), 0, 0)
-        let lifetime = new Date(dt.getFullYear(), dt.getMonth(), dt.getDate(),
-            this.props.endTime.split(':')[0], this.props.endTime.split(':')[1], 0, 0)
+                let lifetime = new Date(dt.getFullYear(), dt.getMonth(), dt.getDate(),
+                    this.props.endTime.split(':')[0], this.props.endTime.split(':')[1], 0, 0)
 
-        if(this.props.endTime < dt.toTimeString().slice(0, 5))
-            lifetime.setDate(lifetime.getDate() + 1);
-        console.log(lifetime)
-        console.log(this.props.date)
-        const cookies = new Cookies();
-        cookies.set('User', 'true|' + this.props.selected, { path: '/', expires: lifetime});
+                if(this.props.endTime < dt.toTimeString().slice(0, 5))
+                    lifetime.setDate(lifetime.getDate() + 1);
+
+                const cookies = new Cookies();
+                cookies.set('User', 'true|' + this.props.selected, { path: '/', expires: lifetime});}
+            )
     }
     render()
     {
@@ -88,11 +88,12 @@ class Element extends React.Component{
             : '0';
 
         const style = (this.props.selected === this.props.music_elem.name)? 'elem select':'elem'
+        const span  = (this.props.cond !== false )? 'progress-bar anim':'progress-bar'
+        const update= (this.props.cond !== false )? () => {}: () => {this.props.updateSelected(this.props.music_elem.name)}
 
-        const update = (this.props.cond !== false )? () => {}: () => {this.props.updateSelected(this.props.music_elem.name)}
         return(
             <div className={style} onClick={update}>
-                <span className='progress-bar' style={{'width': percent + "%"}}/>
+                <span className={span} style={{'width': percent + "%"}}/>
                 <div className='content'>
                     <div style={{"TextAlign":"center"}}>{this.props.music_elem.name}</div>
                     <div>{percent + "%"}</div>
@@ -132,21 +133,11 @@ class App extends React.Component{
         const tnow = this.state.date.toTimeString().slice(0, 5)
         time.forEach((t, i) =>
         {
-            if(endTime === undefined && tnow < time[i])
-                endTime = time[i];
-            else if(endTime === undefined && tnow > time[i] && i === time.length - 1)
-                endTime = time[0];
+            if(endTime === undefined && tnow < time[i])  endTime = time[i];
+            else if(endTime === undefined && tnow > time[i] && i === time.length - 1) endTime = time[0];
         })
         axios.get(URL+'api_form/music_list/' + endTime).then( res => { this.setState(res.data); this.setState({endTime: endTime});} )
     }
-
-    del = () =>
-    {
-        const index = this.state.time.indexOf(this.state.endTime)
-        const newTime = index === this.state.time.length -1? this.state.time[0]: this.state.time[index + 1]
-        axios.delete(URL+'api_form/erase/' + newTime).then(() => this.set_music())
-    }
-
 
     checkCookie = () =>
     {
@@ -173,8 +164,8 @@ class App extends React.Component{
             if(String(this.state.date.getHours()) === this.state.endTime.split(':')[0] &&
                 String(this.state.date.getMinutes()) === this.state.endTime.split(':')[1])
             {
-                this.checkCookie();
-
+                this.setState({selected: false, condition: false});
+                this.set_music();
             }
 
         if(this.state.music !== undefined)
