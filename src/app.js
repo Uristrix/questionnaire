@@ -84,9 +84,7 @@ class Element extends React.Component{
     render()
     {
         const percent = (this.props.cond !== false)?
-            (parseInt(this.props.music_elem.vote) / this.props.all * 100).toFixed(2)
-            : '0';
-
+            (parseInt(this.props.music_elem.vote) / this.props.all * 100).toFixed(2) : '0';
         const style = (this.props.selected === this.props.music_elem.name)? 'elem select':'elem'
         const span  = (this.props.cond !== false )? 'progress-bar anim':'progress-bar'
         const update= (this.props.cond !== false )? () => {}: () => {this.props.updateSelected(this.props.music_elem.name)}
@@ -113,7 +111,7 @@ class App extends React.Component{
         this.set_time()
     }
 
-    init = () => { setInterval(() => { this.setState({date: new Date()})}, 60000) }
+    init = () => { setInterval(() => { this.setState({date: new Date()})}, 1000) }
 
     updateSelected = (value) => { this.setState({selected: value}) }
 
@@ -160,13 +158,15 @@ class App extends React.Component{
     }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     render() {
-        if(this.state.endTime !== undefined)
-            if(String(this.state.date.getHours()) === this.state.endTime.split(':')[0] &&
-                String(this.state.date.getMinutes()) === this.state.endTime.split(':')[1])
-            {
-                this.setState({selected: false, condition: false});
-                this.set_music();
-            }
+        // if(this.state.endTime !== undefined)
+        //     if(String(this.state.date.getHours()) === this.state.endTime.split(':')[0] &&
+        //         String(this.state.date.getMinutes()) === this.state.endTime.split(':')[1]&&
+        //         String(this.state.date.getSeconds()) === '0'
+        //     )
+        //     {
+        //         this.setState({selected: false, condition: false, endTime: undefined});
+        //         this.set_music();
+        //     }
 
         if(this.state.music !== undefined)
         {
