@@ -105,7 +105,7 @@ class App extends React.Component{
 
     constructor(props) {
         super(props);
-        this.state = { date: new Date()};
+        this.state = { date: new Date() };
         this.init()
         this.checkCookie()
         this.set_time()
@@ -158,15 +158,14 @@ class App extends React.Component{
     }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     render() {
-        // if(this.state.endTime !== undefined)
-        //     if(String(this.state.date.getHours()) === this.state.endTime.split(':')[0] &&
-        //         String(this.state.date.getMinutes()) === this.state.endTime.split(':')[1]&&
-        //         String(this.state.date.getSeconds()) === '0'
-        //     )
-        //     {
-        //         this.setState({selected: false, condition: false, endTime: undefined});
-        //         this.set_music();
-        //     }
+        if(this.state.endTime !== undefined && this.state.music !== undefined)
+            if(this.state.date.getHours() === Number(this.state.endTime.split(':')[0]) &&
+                this.state.date.getMinutes() === Number(this.state.endTime.split(':')[1]) &&
+                this.state.date.getSeconds() === 0)
+            {
+                this.setState({selected: false, condition: false, endTime: undefined, music: undefined});
+                this.set_music();
+            }
 
         if(this.state.music !== undefined)
         {
