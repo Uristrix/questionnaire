@@ -11,26 +11,28 @@ const URL = "https://bmstuvoting.herokuapp.com/" //api
 
 class Navbar extends React.Component {
     render() {
-        document.addEventListener('DOMContentLoaded', () => {
+        document.addEventListener('DOMContentLoaded', function() {
             let elems = document.querySelectorAll('.sidenav');
             M.Sidenav.init(elems);
         });
         return (
-            <div className="navbar-fixed">
-                <nav className="nav-wrapper">
-                    <a className= 'brand-logo brush' href="https://mf.bmstu.ru/">
-                        <img className="image" src={logo} alt=' Опросник МФ МГТУ'/>
-                    </a>
-                    <a href="#" data-target="mobile-demo" className="sidenav-trigger"><i
-                        className="material-icons">menu</i></a>
+            <div>
+                <div className="navbar-fixed">
+                    <nav className="nav-wrapper">
+                        <a className= 'brand-logo brush' href="https://mf.bmstu.ru/">
+                            <img className="image" src={logo} alt=' Опросник МФ МГТУ'/>
+                        </a>
+                        <a href="#" data-target="mobile-demo" className="sidenav-trigger"><i
+                            className="material-icons">menu</i></a>
 
-                    <ul id = 'bar' className='right hide-on-med-and-down'>
-                        <li><a href="http://webrobo.mgul.ac.ru:3000/">webrobo</a></li>
-                        <li><a href="http://dbrobo.mgul.ac.ru/">dbrobo</a></li>
-                        <li><a href="http://dokuwiki.mgul.ac.ru/dokuwiki/doku.php">dokuwiki</a></li>
-                        <li><a href="https://rasp.msfu.ru/">Расписание</a></li>
-                    </ul>
-                </nav>
+                        <ul id = 'bar' className='right hide-on-med-and-down'>
+                            <li><a href="http://webrobo.mgul.ac.ru:3000/">webrobo</a></li>
+                            <li><a href="http://dbrobo.mgul.ac.ru/">dbrobo</a></li>
+                            <li><a href="http://dokuwiki.mgul.ac.ru/dokuwiki/doku.php">dokuwiki</a></li>
+                            <li><a href="https://rasp.msfu.ru/">Расписание</a></li>
+                        </ul>
+                    </nav>
+                </div>
 
                 <ul className="sidenav" id="mobile-demo">
                     <li><a href="http://webrobo.mgul.ac.ru:3000/">webrobo</a></li>
